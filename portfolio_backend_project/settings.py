@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import environ
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
   # set casting, default value
@@ -31,7 +29,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -97,11 +94,11 @@ WSGI_APPLICATION = 'portfolio_backend_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.str('DB_NAME'),
-        'USER': env.str('DB_USER'),
-        'PASSWORD': env.str('DB_PASSWORD'),
-        'HOST': env.str('DB_HOST'),  # match to service in docker-compose
-        'PORT': env.int('DB_PORT')
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),  # match to service in docker-compose
+        'PORT': env('DB_PORT')
     }
 }
 
@@ -150,6 +147,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost",
+    "https://foodiejournals.com",
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 if ENVIRONMENT == 'production':
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 3600
