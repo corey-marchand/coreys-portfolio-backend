@@ -1,1 +1,1 @@
-web: gunicorn journal_api_project.wsgi
+web: gunicorn portfolio_backend_project.wsgi
