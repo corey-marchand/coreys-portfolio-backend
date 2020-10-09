@@ -167,7 +167,7 @@ STATICFILES_DIRS = [
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost",
-    "https://foodiejournals.com",
+    "https://iamcoreymarchand.com",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -181,3 +181,5 @@ if ENVIRONMENT == 'production':
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    django_heroku.settings(locals())
